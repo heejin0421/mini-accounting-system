@@ -55,6 +55,14 @@ python manage.py runserver
 - **Django Admin**: http://localhost:8000/admin
 - **API**: http://localhost:8000/api/
 
+## 어드민 계정 생성
+
+Django Admin 페이지에 접속하려면 먼저 관리자 계정을 생성해야 합니다.
+
+```bash
+python manage.py createsuperuser
+```
+
 ## 사용법
 
 1. **파일 업로드**: CSV 파일 선택 후 업로드
