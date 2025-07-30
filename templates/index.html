@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% load static %} {% load humanize %} {% block title
+%}홈 - 미니 자동 회계 처리 시스템{% endblock %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="shadow card">
+      <div class="text-white card-header bg-primary">
+        <h3 class="mb-0">
+          <i class="fas fa-upload me-2"></i>
+          파일 업로드
+        </h3>
+      </div>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="{{ form.file.id_for_label }}" class="form-label">
+              <i class="fas fa-file-csv me-2"></i>
+              {{ form.file.label }}
+            </label>
+            {{ form.file }} {% if form.file.help_text %}
+            <div class="form-text">{{ form.file.help_text }}</div>
+            {% endif %} {% if form.file.errors %}
+            <div class="mt-2 alert alert-danger">
+              {% for error in form.file.errors %}
+              <small>{{ error }}</small>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-upload me-2"></i>
+              업로드 및 처리
+            </button>
+          </div>
+        </form>
+
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-3" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+    </div>
+
+    <div class="mt-4 shadow card">
+      <div class="text-white card-header bg-info">
+        <h4 class="mb-0">
+          <i class="fas fa-info-circle me-2"></i>
+          시스템 정보
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h5><i class="fas fa-database me-2"></i>기술 스택</h5>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-check text-success me-2"></i>Django 4.2.7
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>Django REST
+                Framework
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>SQLite Database
+              </li>
+              <li><i class="fas fa-check text-success me-2"></i>Bootstrap 5</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h5><i class="fas fa-cogs me-2"></i>주요 기능</h5>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-check text-success me-2"></i>자동 거래 분류
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>실시간 대시보드
+              </li>
+              <li><i class="fas fa-check text-success me-2"></i>RESTful API</li>
+              <li><i class="fas fa-check text-success me-2"></i>관리자 패널</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
